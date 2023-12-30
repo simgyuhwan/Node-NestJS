@@ -36,8 +36,28 @@ async function writePost(collection, post) {
   return await collection.insertOne(post);
 }
 
+async function getPostByIdAndPassword(colleciton, { id, password }) {
+  return await colleciton.findOne({ _id: new ObjectId(id), password: password }, projectionOption);
+}
+
+async function getPostById(colleciton, id) {
+  return await colleciton.findOne({ _id: new ObjectId(id) }, projectionOption);
+}
+
+async function updatePost(colleciton, id, post) {
+  const toUpdatePost = {
+    $set: {
+      ...post,
+    },
+  };
+  return await colleciton.updateOne({ _id: new ObjectId(id) }, toUpdatePost );
+}
+
 module.exports = {
   list,
   writePost,
   getDetailPost,
+  getPostById,
+  getPostByIdAndPassword,
+  updatePost,
 };
