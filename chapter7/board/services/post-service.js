@@ -60,4 +60,5 @@ module.exports = {
   getPostById,
   getPostByIdAndPassword,
   updatePost,
+  projectionOption,
 };
