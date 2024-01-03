@@ -20,7 +20,7 @@ GET {{server}}/blog/1
 DELETE {{server}}/blog/1
 
 ### 게시글 수정
-PUT {{server}}/blog/1
+PUT {{server}}/blog/6594daa63ea26efeda08b21a
 Content-Type: application/json
 
 {
