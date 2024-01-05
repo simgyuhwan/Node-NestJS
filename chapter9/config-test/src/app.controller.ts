@@ -11,4 +11,16 @@ export class AppController {
     const message = this.configService.get('MESSAGE');
     return message;
   }
+
+  @Get('service-url')
+  getServiceUrl(): string {
+    return this.configService.get('SERVICE_URL');
+  }
+
+  @Get('db-info')
+  getTest(): string {
+    console.log(this.configService.get('logLevel'));
+    console.log(this.configService.get('apiVersion'));
+    return this.configService.get('dbInfo');
+  }
 }
