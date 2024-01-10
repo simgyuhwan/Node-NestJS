@@ -1,7 +1,7 @@
 import { Controller, Body, Get, Post, Request, Response, UseGuards } from '@nestjs/common';
 import { CreateUserDto } from 'src/user/user.dto';
 import { AuthService } from './auth.service';
-import { LoginGuard } from './auth.guard';
+import { AuthenticatedGuard, LocalAuthGuard, LoginGuard } from './auth.guard';
 
 @Controller('auth')
 export class AuthController {
@@ -38,5 +38,17 @@ export class AuthController {
       });
     }
     return res.send({ message: 'login2 success'});
+  }
+
+  @UseGuards(LocalAuthGuard)
+  @Post('login3')
+  login3(@Request() req) {
+    return req.user;
+  }
+
+  @UseGuards(AuthenticatedGuard)
+  @Get('test-guard2')
+  testGuardWithSession(@Request() req) {
+    return req.user;
   }
 }
