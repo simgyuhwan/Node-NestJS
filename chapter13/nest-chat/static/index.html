@@ -1,33 +1,31 @@
-<!DOCTYPE html> 
+<!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <title>Nest Chat</title>
-  </head>
-  <body>
-    <h2>Simple Nest Chat</h2>
-    <div id="chat"></div>
+<head>
+  <meta charset="utf-8">
+  <title>Nest Chat</title>
+</head>
+<body>
+<h2>Simple Nest Chat</h2>
 
-    <input type="text" id="message" placeholder="메시지를 입력해주상">
-    <button onclick="sendMessage()">전송</button>
-  </body>
+<div>
+  <h2>채팅방 목록</h2>
+  <ul id="rooms"></ul>
+</div>
 
-  <script src="https://code.jquery.com/jquery-3.6.1.slim.js"></script>
-  <script src="http://localhost:3000/socket.io/socket.io.js"></script>
-  <script>
-    const socket = io('http://localhost:3000');
+<div id="chat"></div>
 
-    function sendMessage() {
-      const message = $('#message').val();
-      socket.emit('message', message);
-    }
+<input type="text" id="message" placeholder="메시지를 입력해주상">
+<button onclick="sendMessage()">전송</button>
+<button onclick="createRoom()">방 만들기</button>
 
-    socket.on('conect', () => {
-      console.log('connected');
-    });
+<div>
+  <h2>공지</h2>
+  <div id="notice"></div>
+</div>
 
-    socket.on('message', (message) => {
-      $('#chat').append(`<div>${message}</div>`);
-    })
-  </script>
+</body>
+
+<script src="https://code.jquery.com/jquery-3.6.1.slim.js"></script>
+<script src="http://localhost:3000/socket.io/socket.io.js"></script>
+<script src="http://localhost:3000/script.js"></script>
 </html>
